@@ -1,0 +1,13 @@
+
+export enum Status {
+	PENDING="PENDING",
+	REFUSED="REFUSED",
+	ACCEPTED="ACCEPTED",
+	DONE="DONE"
+}
+export enum Statetype {
+	PROGRESS="PROGRESS",
+	PENDING="PENDING",
+	DONE="DONE"
+}
+
