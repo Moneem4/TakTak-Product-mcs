@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Controller } from '@nestjs/common';
 
-import { ObjectID } from 'mongodb';
+
 import {Offer} from 'src/models/offer.entity';
 import {MessagePattern,Payload,Ctx,RmqContext,} from '@nestjs/microservices';
 

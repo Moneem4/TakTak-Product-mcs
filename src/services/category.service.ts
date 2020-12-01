@@ -31,8 +31,7 @@ export class CategoryService {
     if (
       !input ||
       !input.description ||
-      !input.name ||
-      !input.resource ) {
+      !input.name ) {
       console.log(`data is missing can't create Category`);
     }
   

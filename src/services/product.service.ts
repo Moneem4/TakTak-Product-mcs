@@ -51,8 +51,9 @@ export class ProductService {
       if (
         !product ||
         !product.name ||
-        !product.barCode ||
-        !product.category) 
+        !product.price ||
+        !product.category 
+        ||!product.quantity) 
         {
         console.log(`data is missing can't create Product`);
       }

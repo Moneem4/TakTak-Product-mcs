@@ -2,7 +2,7 @@
 import { Controller } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { ObjectID } from 'mongodb';
+
 import { Category } from '../models/category.entity';
 import {
   Ctx,

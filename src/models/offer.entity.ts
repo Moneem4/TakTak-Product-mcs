@@ -6,9 +6,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   ManyToOne,
+  OneToMany,
 } from 'typeorm';
 import { ObjectID } from 'mongodb';
 import { Product } from './product.entity';
+import { Rating } from './rating.entity';
 
 
 @Entity({
@@ -20,17 +22,12 @@ import { Product } from './product.entity';
 export class Offer {
   @ObjectIdColumn()
   _id: ObjectID;
-
-  @ObjectIdColumn()
-  usine: ObjectID;
   @Column()
   quantity: number;
   @Column()
   state: Statetype;
   @Column()
   description: string;
-  @Column()
-  condition: string;
   @Column()
   percentage: number;
   @Column()
@@ -46,6 +43,8 @@ export class Offer {
   createdAt: Date;
   @DeleteDateColumn()
   deletedAt: Date = null;
+  @OneToMany(() => Rating, rating => rating.product)
+	ratings: Rating[];
   @ManyToOne(() => Product, product => product.offers, {
 
     nullable: false,

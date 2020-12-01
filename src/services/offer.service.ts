@@ -50,9 +50,7 @@ export class OfferService {
         !offer.startDate ||
         !offer.quantity  ||
         !offer.percentage  ||
-        !offer.state||
-        !offer.usine||
-        !offer.condition
+        !offer.state
       ) {
         console.log(`data is missing can't create Offer`);
       }
