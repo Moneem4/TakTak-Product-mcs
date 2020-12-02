@@ -4,7 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { ObjectID } from 'mongodb';
 import {Offer} from 'src/models/offer.entity';
-import {Payload,Ctx,RmqContext,} from '@nestjs/microservices';
+import {Payload} from '@nestjs/microservices';
 import { Product } from 'src/models/product.entity';
 @Injectable()
 export class OfferService {
@@ -28,11 +28,9 @@ export class OfferService {
   }
   //getOfferByOffer
   
-  async getOfferByProduct( @Payload() data: string) {
-    const offer = await this.offerRepository.find({
-      where: { product: data },
-    });
-    return offer;
+  async getOffers( @Payload() data: string) {
+    const offers = await this.offerRepository.find();
+    return offers;
   }
 
   
@@ -42,7 +40,7 @@ export class OfferService {
     
     offer.product = new ObjectID(offer.product);
     console.log(offer.product);
-    const productT = await this.productRepository.findOne(offer.product, {relations:['offres']} );
+    const productT = await this.productRepository.findOne(offer.product);
     if (productT) {
       if (
         !offer ||
@@ -56,8 +54,6 @@ export class OfferService {
       }
       offer.product = productT;
       const newOffer =  await this.offerRepository.save(offer);
-    //  OfferT.closes.push(newOffer._id);
-      await this.offerRepository.save(offer);
       return newOffer;
     } else {
       console.log(productT);
@@ -101,23 +97,4 @@ export class OfferService {
   }
 
 }
- /* if(offer.expirationDate>new Date(Date.now()))
-    { delete offer._id;
-      await this.OfferRepository.findOneAndUpdate(
-        { _id: ObjectID(_id) },
-        { $set: { deletedAt: new Date(Date.now()) } },
-        { returnOriginal: false },
-      );
-      return true;
-    }
-    
-   else if(offer.quantity==0)
-    { const idO = offer._id;
-      delete offer._id;
-      await this.OfferRepository.findOneAndUpdate(
-        { _id: ObjectID(idO) },
-        { $set: { deletedAt: new Date(Date.now()) } },
-        { returnOriginal: false },
-      );
-      return true;
-    } */
+ 

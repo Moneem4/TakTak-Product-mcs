@@ -29,8 +29,9 @@ import { Rating } from './rating.entity';
     contenu: string ;
     @Column()
     description: string ;
-    @OneToMany(() => Rating, rating => rating.product)
-	ratings: Rating[];
+    @OneToMany(() => Rating, rating => rating.menu)
+  ratings: Rating[];
+  
     @CreateDateColumn({
       type: 'timestamp',
       default: () => 'CURRENT_TIMESTAMP(6)',

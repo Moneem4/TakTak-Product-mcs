@@ -40,7 +40,7 @@ import { of } from 'rxjs';
     createdAt: Date;
     @DeleteDateColumn()
     deletedAt: Date = null;
-    @ManyToOne(() => Menu, menu => menu.products, {
+    @ManyToOne(() => Menu, menu => menu.ratings, {
 
       nullable: false,
       cascade: ["remove", "update"]
@@ -55,13 +55,6 @@ import { of } from 'rxjs';
         nullable: false,
         cascade: ["remove", "update"]
       }) product: Product;
-    @ManyToOne(() => Category, category => category.products, {
-
-        nullable: false,
-        cascade: ["remove", "update"]
-      }) category: Category;
-      @OneToMany(() => Offer, offer => offer.product)
-	offers: Offer[];
     constructor(rating: Partial<Rating>) {
       Object.assign(this, rating);
     }

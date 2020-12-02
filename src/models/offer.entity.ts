@@ -43,10 +43,9 @@ export class Offer {
   createdAt: Date;
   @DeleteDateColumn()
   deletedAt: Date = null;
-  @OneToMany(() => Rating, rating => rating.product)
+  @OneToMany(() => Rating, rating => rating.offer)
 	ratings: Rating[];
   @ManyToOne(() => Product, product => product.offers, {
-
     nullable: false,
     cascade: ["remove", "update"]
   }) product: Product;

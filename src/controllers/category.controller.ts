@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Controller } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-
-
 import { Category } from '../models/category.entity';
 import {
   Ctx,
@@ -15,7 +12,6 @@ import { CategoryService } from 'src/services/category.service';
 @Controller('Category')
 export class CategoryController {
   constructor(
-    @InjectRepository(Category)
     private readonly categoryService: CategoryService
   ) {}
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

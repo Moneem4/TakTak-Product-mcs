@@ -34,7 +34,7 @@ import { Rating } from './rating.entity';
   price: number;
   @Column()
   quantity: number; 
-    @CreateDateColumn({
+  @CreateDateColumn({
       type: 'timestamp',
       default: () => 'CURRENT_TIMESTAMP(6)',
     })
@@ -51,12 +51,15 @@ import { Rating } from './rating.entity';
         nullable: false,
         cascade: ["remove", "update"]
       }) category: Category;
-      @OneToMany(() => Offer, offer => offer.product)
+
+    @OneToMany(() => Offer, offer => offer.product)
   offers: Offer[];
+
   @OneToMany(() => Rating, rating => rating.product)
-	ratings: Rating[];
-    constructor(Product: Partial<Product>) {
-      Object.assign(this, Product);
+  ratings: Rating[];
+  
+    constructor(product: Partial<Product>) {
+      Object.assign(this, product);
     }
   }
   

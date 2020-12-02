@@ -23,12 +23,12 @@ export class OfferController {
     return this.offerService.getOfferById(data)
   }
   //getOfferByOffer
-  @MessagePattern('getOfferByProduct')
+  @MessagePattern('getOffers')
   async getOfferByProduct( @Payload() data: string, @Ctx() context: RmqContext,) {
     const channel = context.getChannelRef();
     const orginalMessage = context.getMessage();
     channel.ack(orginalMessage);
-    return this.offerService.getOfferByProduct(data)
+    return this.offerService.getOffers(data)
   }
   //CreateOffer
   @MessagePattern('CreateOffer')

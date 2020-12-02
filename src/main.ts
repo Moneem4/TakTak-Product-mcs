@@ -21,7 +21,7 @@ async function bootstrap() {
     }  
   
     const app = await NestFactory.createMicroservice(AppModule, microserviceOptions);  
-    app.listen(() => logger.log('shopium Microservice is listening'));
+    app.listen(() => logger.log('product Taktak Microservice is listening'));
   } catch (error) {
     console.log(error)
   }

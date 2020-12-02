@@ -5,7 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import * as Controllers from 'src/controllers';
 import * as Models from 'src/models';
-
+import * as Services from 'src/services';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -23,6 +23,6 @@ import * as Models from 'src/models';
     TypeOrmModule.forFeature([...Object.values(Models)])
   ],
   controllers: [AppController, ...Object.values(Controllers)],
-  providers: [AppService],
+  providers: [AppService, ...Object.values(Services)],
 })
 export class AppModule {}

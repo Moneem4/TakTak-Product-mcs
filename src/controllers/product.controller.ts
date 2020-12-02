@@ -1,8 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Controller,Logger } from '@nestjs/common';
-
-import { MongoRepository } from 'typeorm';
-import { ObjectID } from 'mongodb';
 import {MessagePattern,Payload,Ctx,RmqContext,} from '@nestjs/microservices';
 import { Product } from 'src/models/product.entity';
 import { ProductService } from 'src/services/product.service';
@@ -12,8 +9,7 @@ import { ProductService } from 'src/services/product.service';
 export class ProductController {
   private logger = new Logger('Product Controller');
   constructor(
-    
-    private readonly productService:ProductService,
+     private readonly productService:ProductService,
     
   ) {}
   @MessagePattern('getProducts')

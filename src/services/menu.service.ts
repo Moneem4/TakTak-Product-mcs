@@ -24,7 +24,7 @@ export class MenuService {
     @Payload() id: any, 
   ): Promise<Menu> {
 
-    return  await this.menuRepository.findOne(id, { relations: ['closes'] });
+    return  await this.menuRepository.findOne(id, { relations: ['products'] });
   }
   
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

@@ -13,7 +13,7 @@ export class AppController {
   }
   @MessagePattern('ping')
   pingPostService() {
-    Logger.log('ping contract service')
+    Logger.log('ping product tak tak service')
     return of('pong').pipe(delay(1000));
   }
 }

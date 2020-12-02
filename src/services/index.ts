@@ -1,0 +1,5 @@
+export * from './offer.service'
+export * from './category.service' 
+ export * from './product.service' 
+ export * from './rating.service'
+ export * from './menu.service'

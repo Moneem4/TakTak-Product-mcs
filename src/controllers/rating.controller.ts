@@ -9,7 +9,6 @@ import { RatingService } from 'src/services/rating.service';
 export class RatingController {
   private logger = new Logger('Rating Controller');
   constructor(
-    
     private readonly ratingService:RatingService,
     
   ) {}
