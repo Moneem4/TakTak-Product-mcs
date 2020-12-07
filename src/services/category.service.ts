@@ -20,14 +20,18 @@ export class CategoryService {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async getCategoryById(@Payload() id: any): Promise<Category> {
     
-    return  await this.categoryRepository.findOne(id, { relations: ['closes'] });
+    const category=  await this.categoryRepository.findOne(id);
+    if (category.deletedAt == null || category ) {
+      return category;
+    } else {
+      return null;
+    }
   }
   
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async createCategory(@Payload() input: Partial<Category>,
   ): Promise<Category> {
-    
-    console.log('here', input);
+  
     if (
       !input ||
       !input.description ||
@@ -42,19 +46,26 @@ export class CategoryService {
  
  
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async updateCategory(id:any, categoryT: Partial<Category>): Promise<Category> {
+  async updateCategory(@Payload() id:any,@Payload() categoryT: Partial<Category>): Promise<Category> {
     console.log(categoryT);
     const category = await this.categoryRepository.findOne(id);
-    delete category._id;
+    console.log(category);
+    if(category)
+    {
+    
     category.updatedAt = new Date(Date.now());
-    const _id=new ObjectID(category._id)
+    const _id=category._id
+    delete category._id;
     const updated = await this.categoryRepository.findOneAndUpdate(
       { _id: ObjectID(_id) },
       { $set: categoryT },
       { returnOriginal: false },
     );
 
-    return new Category(updated.value);
+       return new Category(updated.value);
+    } 
+    else  
+       { return null}
   }
 
  

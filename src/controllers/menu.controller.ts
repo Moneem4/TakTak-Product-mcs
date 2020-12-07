@@ -1,4 +1,4 @@
-import { Controller } from '@nestjs/common';
+import { Body, Controller } from '@nestjs/common';
 
 
 import { Menu } from '../models/Menu.entity';
@@ -17,9 +17,9 @@ export class MenuController {
     private readonly menuService: MenuService,
   ) {}
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  @MessagePattern('getCategories')
+  @MessagePattern('getMenus')
   async getCategories() {
-    return await this.menuService.getCategories()
+    return await this.menuService.getMenus()
   }
 
   @MessagePattern('getMenuById')
@@ -49,8 +49,8 @@ export class MenuController {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @MessagePattern('updateMenu')
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async updateEvent(@Payload() id :any,@Payload() menu: Partial<Menu>): Promise<Menu> {
-    return this.menuService.updateMenu(id,menu)
+  async updateEvent(@Payload() id: string,menuU: Partial<Menu>): Promise<Menu> {
+    return this.menuService.updateMenu(id,menuU)
   }
 
   @MessagePattern('deleteMenu')

@@ -44,7 +44,6 @@ export class ProductService {
   async createProduct(@Payload() product: Partial<Product>): Promise<Product> {
    
     product.category = new ObjectID(product.category);
-    console.log(product.category);
     const categoryT = await this.categoryRepository.findOne(product.category, {relations:['products']} );
    
     if (categoryT) {

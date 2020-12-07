@@ -14,7 +14,7 @@ export class MenuService {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
  
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-  async getCategories() {
+  async getMenus() {
     return await this.menuRepository.find({ where: { deletedAt: null } });
   }
 
@@ -47,15 +47,16 @@ export class MenuService {
     return menu;
   }
 
+  
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
- 
-  async updateMenu( id: string, menuU: Partial<Menu>): Promise<Menu> {
-    console.log(id);
+  async updateMenu( id: string,menuU: Partial<Menu>): Promise<Menu> {
+   // console.log(id);
     const menu = await this.menuRepository.findOne(id);
-    const _id = menu._id;
-    delete menu.
-    _id;
+    console.log(menu._id);
+    delete menu._id;
+
     menu.updatedAt = new Date(Date.now());
+    const _id=menu._id
     const updated = await this.menuRepository.findOneAndUpdate(
       { _id: ObjectID(_id) },
       { $set: menuU },

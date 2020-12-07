@@ -17,7 +17,10 @@ export class CategoryController {
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   @MessagePattern('getCategories')
   async getCategories() {
-    return await this.categoryService.getCategories()
+    const categories= await this.categoryService.getCategories()
+    console.log("ggggggggg")
+    console.log(categories);
+    return categories;
   }
 
   @MessagePattern('getCategoryById')
